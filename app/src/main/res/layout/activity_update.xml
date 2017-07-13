@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_img"
+    android:orientation="vertical"
+    tools:context="com.app.qootho.activity_update">
+
+    <include
+        layout="@layout/layout_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"/>
+
+    <View
+
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/line_color"/>
+
+    <LinearLayout
+        android:id="@+id/linear_first_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        >
+
+
+
+
+
+
+        <EditText
+
+            android:id="@+id/txtMBileNo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dip"
+            android:paddingLeft="10dp"
+            android:hint="Mobile Number"
+            android:inputType="number"
+            android:maxLength="14"
+            android:lines="1"
+            style="@style/large_code_face">
+
+        </EditText>
+
+
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Update"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:elevation="6dp"
+            style="@style/large_button"
+            android:textColor="@color/White"
+            android:clickable="true"
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
