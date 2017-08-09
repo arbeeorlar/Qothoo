@@ -2,28 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
+    android:fitsSystemWindows="true"
 
-    android:orientation="vertical" >
-
+    android:orientation="vertical">
 
 
     <include
+        android:id="@+id/toolbar"
         layout="@layout/layout_test"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toolbar"/>
+        android:layout_height="wrap_content" />
 
     <View
 
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@color/line_color"/>
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,121 +37,118 @@
                 android:orientation="vertical">
                 <!-- body    -->
                 <RelativeLayout
+                    android:id="@+id/caseDetail"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/caseDetail"
                     android:orientation="horizontal"
 
-                     >
+                    >
 
                     <!--  ListRow Left sied Thumbnail image -->
-                    <LinearLayout android:id="@+id/thumbnail"
+                    <LinearLayout
+                        android:id="@+id/thumbnail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="15dip"
-                        android:layout_marginRight="5dip">
+                        android:layout_marginRight="5dip"
+                        android:padding="3dip">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/update_picture"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:id="@+id/update_picture"
                             android:src="@drawable/amadi_car" />
 
                     </LinearLayout>
-
 
 
                 </RelativeLayout>
             </LinearLayout>
 
 
-
-
-
-
             <View
                 android:id="@+id/view12"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/line_color"/>
+                android:background="@color/line_color" />
 
 
-                <LinearLayout
-                    android:id="@+id/linearLayoutFName"
+            <LinearLayout
+                android:id="@+id/linearLayoutFName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="left"
+                    android:text="First Name"
+                    android:textColor="@color/approved_text_color"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtFName"
+                    style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:text="Isola"
+                    android:textColor="@color/approved_text_color"
+                    android:textStyle="bold" />
 
-                    <TextView
+                <!--<ImageView-->
+                <!--android:layout_width="38dp"-->
+                <!--android:layout_height="38dp"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:src="@drawable/ic" />-->
 
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="left"
-                        android:text="First Name"
-                        android:textColor="@color/approved_text_color"
-                        android:textStyle="normal" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txtFName"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="10dp"
-                        android:gravity="left"
-                        android:text="Isola"
-                        android:textColor="@color/approved_text_color"
-                        android:textStyle="bold" />
-
-                    <!--<ImageView-->
-                    <!--android:layout_width="38dp"-->
-                    <!--android:layout_height="38dp"-->
-                    <!--android:layout_marginRight="5dp"-->
-                    <!--android:src="@drawable/ic" />-->
-
-                </LinearLayout>
             <View
 
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/line_color"/>
-                <LinearLayout
-                    android:id="@+id/linearLayoutLastName"
-                    android:layout_width="match_parent"
+                android:background="@color/line_color" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
+                    android:layout_alignParentBottom="true"
+                    android:gravity="left"
+                    android:text="Last Name"
+                    android:textColor="@color/approved_text_color"
+                    android:textStyle="normal" />
 
-                    <TextView
-
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="left"
-                        android:text="Last Name"
-                        android:textColor="@color/approved_text_color"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:id="@+id/txtLastname"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="left"
-                        android:text="Abeeb"
-                        android:textColor="@color/approved_text_color"
-                        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txtLastname"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:text="Abeeb"
+                    android:textColor="@color/approved_text_color"
+                    android:textStyle="bold" />
 
 
-
-                </LinearLayout>
+            </LinearLayout>
 
 
             <View
@@ -294,7 +291,7 @@
                 android:id="@+id/view123"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/line_color"/>
+                android:background="@color/line_color" />
 
         </LinearLayout>
     </ScrollView>

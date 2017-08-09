@@ -5,12 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.AsyncTask;
-import android.os.Build;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -27,14 +24,9 @@ import com.app.qootho.Utilities.Constants;
 import com.app.qootho.Utilities.QoothoDB;
 import com.app.qootho.Utilities.SessionManager;
 import com.app.qootho.Utilities.Util;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -52,43 +44,32 @@ import com.google.gson.GsonBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WorkActivity extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        LocationListener,GoogleMap.OnMapClickListener {
+public class WorkActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    int PLACE_AUTOCOMPLETE_REQUEST_CODE_TO = 1;
-    int PLACE_AUTOCOMPLETE_REQUEST_CODE_FROM = 2;
-
-    GoogleMap mGoogleMap;
-    SupportMapFragment mapFrag;
-    LocationRequest mLocationRequest;
-    GoogleApiClient mGoogleApiClient;
-    Location mLastLocation;
-    //private Location mCurrentLocation;
-    Marker mCurrLocationMarker;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private final int[] MAP_TYPES = {GoogleMap.MAP_TYPE_SATELLITE,
             GoogleMap.MAP_TYPE_NORMAL,
             GoogleMap.MAP_TYPE_HYBRID,
             GoogleMap.MAP_TYPE_TERRAIN,
             GoogleMap.MAP_TYPE_NONE};
+    protected LatLng start;
+    int PLACE_AUTOCOMPLETE_REQUEST_CODE_TO = 1;
 
+    //private Location mCurrentLocation;
+    Marker mCurrLocationMarker;
     String[] permissionsRequired = new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION};
-
-    private GoogleMap mMap;
     QoothoDB db = null;
     SessionManager session = null;
     SharedPreferences installPref;
     String username;
     UserAccount user;
     TokenObject token;
-
     double workLatitude;
     double workLongitude;
     String workAddress;
     EditText txtSearch;
-    protected LatLng start;
-   // String token ;
+    // String token ;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +79,21 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         txtSearch = (EditText) toolbar.findViewById(R.id.start);
-       // toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        //toolbar.setNavigationIcon(R.drawable.ic_action_keyboard_backspace);
 
 
-
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -114,9 +104,9 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
         installPref = getSharedPreferences(SessionManager.PREF_NAME, SessionManager.PRIVATE_MODE);
         username = installPref.getString(SessionManager.KEY_USERNAME, null);
         user = new UserAccount();
-        token =  new TokenObject();
+        token = new TokenObject();
         user = db.getUserProfile(username);
-        token  = db.getTokenByUsername(username);
+        token = db.getTokenByUsername(username);
 
         workAddress = user.getWorkAddress();
         workLatitude = user.getWorkLat();
@@ -127,7 +117,7 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
         System.out.println(workLongitude);
 
         mapFragment.getMapAsync(this);
-  txtSearch.setEnabled(true);
+        txtSearch.setEnabled(true);
 
         txtSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,16 +137,54 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-
     @Override
     public void onPause() {
         super.onPause();
 
         //stop location updates when Activity is no longer active
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        }
+//        if (mGoogleApiClient != null) {
+//            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+//        }
     }
+
+//    protected synchronized void buildGoogleApiClient() {
+//        mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
+//                .addConnectionCallbacks(this)
+//                .addOnConnectionFailedListener(this)
+//                .addApi(LocationServices.API)
+//                .build();
+//        mGoogleApiClient.connect();
+//    }
+
+//    @Override
+//    public void onConnected(Bundle bundle) {
+//        mLocationRequest = new LocationRequest();
+//       // mLocationRequest.setInterval(1000);
+//       // mLocationRequest.setFastestInterval(1000);
+//       // mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+//        if (ContextCompat.checkSelfPermission(getApplicationContext(), permissionsRequired[0])
+//                == PackageManager.PERMISSION_GRANTED) {
+//            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+//        }
+//    }
+//
+//    @Override
+//    public void onConnectionSuspended(int i) {
+//    }
+//
+//    @Override
+//    public void onConnectionFailed(ConnectionResult connectionResult) {
+//    }
+//
+//    @Override
+//    public void onLocationChanged(Location location) {
+//        mLastLocation = location;
+//        if (mCurrLocationMarker != null) {
+//           // mCurrLocationMarker.remove();
+//        }
+//        initCamera(workLatitude,workLongitude,workAddress,true);
+//
+//    }
 
     /**
      * Manipulates the map once available.
@@ -169,74 +197,33 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mGoogleMap = googleMap;
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(getApplicationContext(),
-                    permissionsRequired[0])
-                    == PackageManager.PERMISSION_GRANTED) {
 
-                buildGoogleApiClient();
-               // mGoogleMap.setMyLocationEnabled(true);
-                mGoogleMap.setMapType(MAP_TYPES[1]);
+        mMap = googleMap;
 
-                //mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-                initCamera(workLatitude,workLongitude,workAddress,false);
+        // Add a marker in Sydney and move the camera
+        LatLng startDirection = new LatLng(workLatitude, workLongitude);
+        // LatLng endDirection =  new LatLng(endLatitude,endLongititude);
+        mMap.addMarker(new MarkerOptions().position(startDirection).title(workAddress));
+        //mMap.addMarker(new MarkerOptions().position(endDirection).title(endAddress));
+        mMap.setMapType(MAP_TYPES[1]);
+        mMap.setTrafficEnabled(false);
 
-            } else {
-
-                checkLocationPermission();
-            }
-        } else {
-            buildGoogleApiClient();
-            //mGoogleMap.setMyLocationEnabled(true);
-            mGoogleMap.setMapType(MAP_TYPES[1]);
-            initCamera(workLatitude,workLongitude,workAddress,false);
-            //mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-            //initCamera(mLastLocation);
-        }
-    }
-
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
+        // Getting URL to the Google Directions API
+        //String url = getUrl(startDirection, endDirection);
+        //Log.d("onMapClick", url.toString());
+        // BookRideActivity.FetchUrl FetchUrl = new BookRideActivity.FetchUrl();
+        //FetchUrl.execute(url);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(startDirection));
+        CameraPosition position = CameraPosition.builder()
+                .target(startDirection)
+                .zoom(19f)
+                .bearing(0.0f)
+                .tilt(0.0f)
                 .build();
-        mGoogleApiClient.connect();
+        mMap.animateCamera(CameraUpdateFactory
+                .newCameraPosition(position), null);
     }
-
-    @Override
-    public void onConnected(Bundle bundle) {
-        mLocationRequest = new LocationRequest();
-       // mLocationRequest.setInterval(1000);
-       // mLocationRequest.setFastestInterval(1000);
-       // mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), permissionsRequired[0])
-                == PackageManager.PERMISSION_GRANTED) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-        }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        mLastLocation = location;
-        if (mCurrLocationMarker != null) {
-            mCurrLocationMarker.remove();
-        }
-        initCamera(mLastLocation.getLatitude(),mLastLocation.getLongitude(),"",false);
-
-    }
-
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(getApplicationContext(), permissionsRequired[0])
@@ -287,10 +274,10 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
                     if (ContextCompat.checkSelfPermission(getApplicationContext(), permissionsRequired[0])
                             == PackageManager.PERMISSION_GRANTED) {
 
-                        if (mGoogleApiClient == null) {
-                            buildGoogleApiClient();
-                        }
-                        mGoogleMap.setMyLocationEnabled(true);
+//                        if (mGoogleApiClient == null) {
+//                            buildGoogleApiClient();
+//                        }
+//                        mGoogleMap.setMyLocationEnabled(true);
                     }
 
                 } else {
@@ -307,27 +294,56 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    private void initCamera(double lat, double longitude,String title,boolean test) {
+//    private void initCamera(double lat, double longitude,String title,boolean test) {
+//
+//        LatLng latLng = new LatLng(lat, longitude);
+//        MarkerOptions markerOptions = new MarkerOptions();
+//        CameraPosition position = CameraPosition.builder()
+//                .target(latLng)
+//                .zoom(17f)
+//                .bearing(0.0f)
+//                .tilt(0.0f)
+//                .build();
+//        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), null);
+////       if(test){
+////           if (mCurrLocationMarker != null) {
+////               mCurrLocationMarker.remove();
+////           }
+//           markerOptions.position(latLng);
+//           markerOptions.title(title);
+//           markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+//           mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
+//      // }
+//        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+//        mGoogleMap.setMapType(MAP_TYPES[1]);
+//    }
+
+
+    private void initCamera(double lat, double longitude, String title) {
+
+        mMap.clear();
 
         LatLng latLng = new LatLng(lat, longitude);
         MarkerOptions markerOptions = new MarkerOptions();
         CameraPosition position = CameraPosition.builder()
                 .target(latLng)
-                .zoom(17f)
+                .zoom(19f)
                 .bearing(0.0f)
-                .tilt(0.0f)
+                .tilt(0f)
                 .build();
-        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), null);
-       if(test){
-           markerOptions.position(latLng);
-           markerOptions.title(title);
-           markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-           mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
-       }
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
-        mGoogleMap.setMapType(MAP_TYPES[1]);
-    }
 
+        mMap.animateCamera(CameraUpdateFactory
+                .newCameraPosition(position), null);
+
+        markerOptions.position(latLng);
+        markerOptions.title(title);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+        mCurrLocationMarker = mMap.addMarker(markerOptions);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        mMap.setMapType(MAP_TYPES[1]);
+
+
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -339,11 +355,10 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
                 txtSearch.setText(place.getName());
 
                 start = place.getLatLng();
-                Log.i("getAddress",place.getAddress()+"");
+                Log.i("getAddress", place.getAddress() + "");
 
-                new  UPDATE(start.latitude,start.longitude,place.getAddress()+"",token.getToken()).execute();
-
-
+                //new  UPDATE(start.latitude,start.longitude,place.getAddress()+"",token.getToken()).execute();
+                new UPDATE(start.longitude, start.latitude, place.getAddress().toString(), token.getToken()).execute();
 
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
@@ -351,51 +366,66 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
                 // TODO: Handle the error.
                 Log.i("WEMAMOBILE", status.getStatusMessage());
 
-                Toast.makeText(WorkActivity.this,status.getStatusMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(WorkActivity.this, status.getStatusMessage(), Toast.LENGTH_LONG).show();
 
             } else if (resultCode == RESULT_CANCELED) {
                 // The user canceled the operation.
             }
         } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-                Status status = PlaceAutocomplete.getStatus(WorkActivity.this, data);
-                // TODO: Handle the error.
-                Log.i("WEMAMOBILE", status.getStatusMessage());
-                Toast.makeText(WorkActivity.this,status.getStatusMessage(),Toast.LENGTH_LONG).show();
+            Status status = PlaceAutocomplete.getStatus(WorkActivity.this, data);
+            // TODO: Handle the error.
+            Log.i("WEMAMOBILE", status.getStatusMessage());
+            Toast.makeText(WorkActivity.this, status.getStatusMessage(), Toast.LENGTH_LONG).show();
 
 
-
-            } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
-            }
+        } else if (resultCode == RESULT_CANCELED) {
+            // The user canceled the operation.
         }
-
-    @Override
-    public void onMapClick(LatLng latLng) {
-
     }
+
+//    @Override
+//    public void onMapClick(LatLng latLng) {
+//
+//    }
 
 //    @Override
 //    public void onMapClick(LatLng latLng) {
 //        initCamera(latLng.latitude,latLng.longitude,"Set Work Address");
 //    }
 
-    public  class UPDATE extends AsyncTask<Void, Void, String> {
+    public void GETUSERDEATIAL(String token, String username) {
+        QoothoDB db = new QoothoDB(getApplicationContext());
+        UserAccount user = null;
+        String respons = Connections.GETUSERDETAIL_GET(token);
+        if (respons != null) {
+            System.out.println("RESPONSE::: " + respons);
 
-        double  longitude;
-        double   latitude;
+            GsonBuilder builder = new GsonBuilder();
+            Gson mGson = builder.create();
+            user = mGson.fromJson(respons, UserAccount.class);
+            //System.out.println("" + user.getFirstName());
+            db.saveUserProfile(getApplicationContext(), user, username);
+
+
+        }
+
+    }
+
+    public class UPDATE extends AsyncTask<Void, Void, String> {
+
+        double longitude;
+        double latitude;
         String Address;
         String token;
         ProgressDialog pDialog;
 
 
-
-
-        public UPDATE(double longitude,double  latitude,String Address,String token){
-            this. longitude = longitude ;
+        public UPDATE(double longitude, double latitude, String Address, String token) {
+            this.longitude = longitude;
             this.latitude = latitude;
             this.Address = Address;
-            this.token = token ;
-            Log.i("Address:: ",this.Address);
+            this.token = token;
+            Log.i("Address:: ", this.Address);
 
         }
 
@@ -407,27 +437,29 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         @Override
         protected String doInBackground(Void... params) {
-            String result  =  null;
+            String result = null;
             String resp = "";
             Log.i(Constants.LOG_TAG, "<<<<STARTING LOGIN>>>>");
-            try{
+            try {
 
-                result = Connections.UPDATEWORKADDRESS(token,latitude,longitude,workAddress);
+                result = Connections.UPDATEWORKADDRESS(token, latitude, longitude, Address);
 //                if( result.contains("{\"access_token\"") && result != ""){
-                    JSONObject jsonObj = new JSONObject(result);
-                    String  msg = jsonObj.getString("message");
-
-                    GETUSERDEATIAL(token,username);
-                    System.out.println("GETUSERDEATIAL::: " + resp );
+                JSONObject jsonObj = new JSONObject(result);
+                String msg = jsonObj.getString("message");
+                if (msg.contains("Ok")) {
+                    GETUSERDEATIAL(token, username);
+                    System.out.println("GETUSERDEATIAL::: " + result);
+                }
 
                 //}
-            }catch(Exception exp){
+            } catch (Exception exp) {
                 exp.printStackTrace();
-                result =  Util.errorCode(Constants.ERROR_CODE, Constants.DOING_BACKGROUND_SERVICE_RESULT);
+                result = Util.errorCode(Constants.ERROR_CODE, Constants.DOING_BACKGROUND_SERVICE_RESULT);
             }
             System.out.println("background " + result);
             return result;
         }
+
         @Override
         protected void onPostExecute(final String resp) {
             //{"error":"invalid_grant","error_description":"The user name or password is incorrect."}
@@ -436,13 +468,13 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
             try {
                 JSONObject result = new JSONObject(resp);
                 response = result.getString("message");
-                if(response.contains("Ok")){
+                if (response.contains("Ok")) {
 
-                    initCamera(this.latitude,this.longitude,Address +"",true);
-                    Toast.makeText(getApplicationContext(),"Successful Updated",Toast.LENGTH_LONG).show();
+                    initCamera(this.latitude, this.longitude, Address.toString());
+                    Toast.makeText(getApplicationContext(), "Successful Updated", Toast.LENGTH_LONG).show();
 
-                }else{
-                    Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
 
                 }
             } catch (JSONException e) {
@@ -450,28 +482,11 @@ public class WorkActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
         }
+
         @Override
         protected void onCancelled() {
 
         }
-    }
-
-    public  void  GETUSERDEATIAL(String token,String username){
-        QoothoDB db = new QoothoDB(getApplicationContext());
-        UserAccount user =  null;
-        String respons = Connections.GETUSERDETAIL_GET(token);
-        if(respons != null){
-            System.out.println("RESPONSE::: " + respons);
-
-            GsonBuilder builder = new GsonBuilder();
-            Gson mGson = builder.create();
-            user = mGson.fromJson(respons,UserAccount.class);
-            //System.out.println("" + user.getFirstName());
-            db.saveUserProfile(getApplicationContext(),user,username);
-
-
-        }
-
     }
 
 

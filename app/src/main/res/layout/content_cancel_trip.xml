@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_img"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.app.qootho.activity_update">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color" />
+
+    <LinearLayout
+        android:id="@+id/linear_first_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+
+            <Spinner
+                android:id="@+id/txtSpinnerReason"
+                style="@style/large_code_face"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <EditText
+
+            android:id="@+id/txtNote"
+            style="@style/large_code_face"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="top"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="top"
+            android:hint="Note:"
+            android:inputType="text"
+            android:lines="10"
+
+
+            android:paddingLeft="10dp">
+
+        </EditText>
+
+
+        <Button
+            android:id="@+id/btnSendCancel"
+            style="@style/large_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:elevation="6dp"
+            android:text="Cancel Trip"
+            android:textColor="@color/White"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

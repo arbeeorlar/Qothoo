@@ -1,0 +1,376 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/container_toolbar">
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/locationMarker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/locationMarkertext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_map"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text=" Set your Location "
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/imageMarker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add_marker" />
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_test" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="2dp"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/large_code_face"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/send2"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_dot_source" />
+
+
+                <!--<AutoCompleteTextView-->
+                <!--android:id="@+id/autocomplete_places"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:hint="From"-->
+                <!--android:singleLine="true" />-->
+
+
+                <!--<TextView-->
+                <!--android:id="@+id/start"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:hint="From:"-->
+                <!--android:textColor="@color/Black_overlay"-->
+                <!--android:textSize="14dp"-->
+                <!--android:textStyle="bold" />-->
+
+                <AutoCompleteTextView
+                    android:id="@+id/start"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="start|center"
+                    android:hint="From:"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/large_code_face"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/send"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_source_img" />
+
+
+                <!--<AutoCompleteTextView-->
+                <!--android:hint="Where to:"-->
+                <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/destination"-->
+                <!--android:textColor="@color/Black_overlay"-->
+                <!--android:textSize="14dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:gravity="start|center"/>-->
+                <AutoCompleteTextView
+                    android:id="@+id/destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="left|center"
+                    android:hint="Where to:"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+
+                <!--<TextView-->
+                <!--android:id="@+id/destination"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:hint="Where to:"-->
+                <!--android:textColor="@color/Black_overlay"-->
+                <!--android:textSize="14dp"-->
+                <!--android:textStyle="bold" />-->
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+
+                android:id="@+id/txtDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:gravity="start|center"
+                android:text=""
+                android:textColor="@color/approved_text_color"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|bottom"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:id="@+id/linearFirst"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageButton
+                    android:id="@+id/btnScheduleFuture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:background="@drawable/round_corner"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:src="@drawable/icons_work" />
+
+            </LinearLayout>
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/linearSecond"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:layout_weight="0.12"-->
+            <!--android:orientation="vertical"-->
+            <!--android:padding="5dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/txtSourceTrip"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:textColor="@color/approved_text_color"-->
+            <!--android:ems="10"-->
+            <!--android:gravity="center"-->
+            <!--android:text=""-->
+            <!--android:textSize="10dp"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/txtSecond"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:padding="8dp"-->
+            <!--android:background="@drawable/rounded_corner"-->
+
+            <!--android:gravity="center"-->
+            <!--android:src="@drawable/icons_rotate_left"-->
+
+            <!--/>-->
+            <!--</LinearLayout>-->
+
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/linearThree"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:gravity="right"-->
+            <!--android:layout_weight="1"-->
+            <!--android:orientation="vertical"-->
+            <!--&gt;-->
+
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/txtThird"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:background="@drawable/round_corner"-->
+            <!--android:gravity="center"-->
+            <!--android:maxLength="1"-->
+            <!--android:src="@drawable/icons_structural"-->
+
+
+            <!--/>-->
+            <!--</LinearLayout>-->
+            <LinearLayout
+                android:id="@+id/linearSecond"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageButton
+                    android:id="@+id/btnImageScnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:background="@drawable/round_corner"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:src="@drawable/icons_home" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/btnSend"
+                style="@style/large_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
+                android:clickable="true"
+                android:elevation="6dp"
+                android:text="Done"
+                android:textColor="@color/White"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <!--<android.support.v7.widget.CardView-->
+        <!--android:id="@+id/cardview2"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal|bottom"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginLeft="20dp"-->
+
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:background="@null"-->
+        <!--android:elevation="100dp"-->
+        <!--card_view:cardBackgroundColor="@android:color/transparent"-->
+        <!--card_view:cardCornerRadius="0dp">-->
+
+
+        <!--</android.support.v7.widget.CardView>-->
+
+    </LinearLayout>
+
+
+</FrameLayout>

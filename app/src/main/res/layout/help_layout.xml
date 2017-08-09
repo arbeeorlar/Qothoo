@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@null"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="5dip">
+
+    <!--&lt;!&ndash;  ListRow Left sied Thumbnail image &ndash;&gt;-->
+    <LinearLayout
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip"
+        android:background="@null"
+        android:padding="3dip"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_lonely_friends" />
+
+    </LinearLayout>
+
+    <!-- Title Of Song-->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="7dp"
+        android:gravity="center"
+        android:text="Rihanna Love the way lie"
+        android:textColor="@color/approved_text_color"
+        android:textSize="15dip"
+        android:textStyle="normal"
+        android:typeface="sans" />
+
+    <!-- Artist Name -->
+    <!--<TextView-->
+    <!--android:id="@+id/time"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/title"-->
+    <!--android:textColor="#343434"-->
+    <!--android:textSize="10dip"-->
+    <!--android:layout_marginTop="1dip"-->
+    <!--android:layout_toRightOf="@+id/thumbnail"-->
+    <!--android:text="Just gona stand there and ..." />-->
+    <!---->
+    <!--&lt;!&ndash; Rightend Duration &ndash;&gt;-->
+    <!--<TextView-->
+    <!--android:id="@+id/typeOfthemovie"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/time"-->
+    <!--android:textColor="#343434"-->
+    <!--android:textSize="10dip"-->
+    <!--android:layout_marginTop="1dip"-->
+    <!--android:layout_toRightOf="@+id/thumbnail"-->
+    <!--android:text="Just ..." />-->
+
+    <!-- Rightend Arrow -->
+    <ImageView
+        android:id="@+id/direction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_keyboard_arrow_right" />
+
+</RelativeLayout>

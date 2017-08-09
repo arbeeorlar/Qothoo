@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <View
+        android:id="@+id/view123"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color" />
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@null">
+                <!--<ScrollView
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/form"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <EditText
+
+                            android:id="@+id/txtCardPAN"
+                            style="@style/large_code_face"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="10dip"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:hint="Card PAN"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:maxLength="20"
+                            android:paddingLeft="10dp">
+
+                        </EditText>
+
+                        <EditText
+
+                            android:id="@+id/txtExpDate"
+                            style="@style/large_code_face"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="10dip"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:hint="Expiry Date"
+                            android:inputType="date"
+                            android:lines="1"
+                            android:maxLength="10"
+                            android:paddingLeft="10dp">
+
+                        </EditText>
+
+                        <LinearLayout
+                            style="@style/large_code_face"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center|bottom"
+                            android:layout_marginBottom="10dip"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.50"
+                                android:text="expiry date:" />
+
+                            <Spinner
+                                android:id="@+id/spinnerDays"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.40"
+                                android:entries="@array/days"
+                                android:prompt="@string/DayTitle" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="3dp"
+                                android:paddingRight="3dp"
+                                android:text="/" />
+
+                            <Spinner
+                                android:id="@+id/spinnerYear"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.50"
+                                android:prompt="@string/DayTitle" />
+
+
+                            <!--     <EditText
+                                     android:id="@+id/txtGIST1"
+                                     android:layout_width="0dp"
+                                     android:layout_height="wrap_content"
+                                     android:ems="10"
+                                     android:enabled="false"
+                                     android:singleLine="false"
+                                     android:textColor="#000000" />
+
+                                 <EditText
+                                     android:id="@+id/txtGIST2"
+                                     android:layout_width="0dp"
+                                     android:layout_height="wrap_content"
+                                     android:layout_weight="0.5"
+                                     android:ems="10"
+                                     android:enabled="false"
+                                     android:singleLine="false"
+                                     android:textColor="#000000" /> -->
+                        </LinearLayout>
+
+
+                        <EditText
+
+                            android:id="@+id/txtCVV"
+                            style="@style/large_code_face"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="10dip"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:hint="CVV2"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:maxLength="3"
+                            android:paddingLeft="10dp">
+
+                        </EditText>
+
+                        <EditText
+
+                            android:id="@+id/txtPIN"
+                            style="@style/large_code_face"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="10dip"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:hint="PIN"
+                            android:inputType="numberPassword"
+                            android:lines="1"
+                            android:maxLength="4"
+                            android:paddingLeft="10dp"
+                            android:visibility="gone">
+
+                        </EditText>
+
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp">
+
+                        <include
+                            android:id="@+id/wait_icon"
+                            layout="@layout/wait_icon_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
+                        <!--<Button-->
+                        <!--android:id="@+id/add_card_button"-->
+                        <!--android:layout_width="220dp"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:text="@string/Add_New_Card"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:elevation="6dp"-->
+                        <!--style="@style/main_large_button"-->
+                        <!--android:clickable="true" />-->
+
+                        <Button
+                            android:id="@+id/btnAddCard"
+                            style="@style/large_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="0dp"
+                            android:clickable="true"
+                            android:elevation="6dp"
+                            android:text="@string/Add_New_Card"
+                            android:textColor="@color/White"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+                </LinearLayout>
+                <!--</ScrollView>-->
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_pin_warning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:visibility="invisible"
+                app:cardBackgroundColor="#E5E5E5">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/exclamation" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_card_pin_warning"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

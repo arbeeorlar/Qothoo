@@ -1,7 +1,7 @@
 package com.app.qootho;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,22 +12,20 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class FavoriteMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
     String Category;
     double workLatitude;
     double workLongitude;
-    double  HomeLatitude;
-    double   HomeLongitude;
-    String  workAddress;
-    String  homeAddress;
-
+    double HomeLatitude;
+    double HomeLongitude;
+    String workAddress;
+    String homeAddress;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_map);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -54,6 +52,7 @@ public class FavoriteMapActivity extends FragmentActivity implements OnMapReadyC
         }
         return 0.0;
     }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -67,17 +66,16 @@ public class FavoriteMapActivity extends FragmentActivity implements OnMapReadyC
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if("HOME".equalsIgnoreCase(getStringData(Category))){
+        if ("HOME".equalsIgnoreCase(getStringData(Category))) {
 
             homeAddress = getStringData("HomeAddress");
             HomeLatitude = getDoubleData("HomeLatitude");
 
 
-        }else if("WORK".equalsIgnoreCase(getStringData(Category))){
+        } else if ("WORK".equalsIgnoreCase(getStringData(Category))) {
 
 
         }
-
 
 
         // Add a marker in Sydney and move the camera

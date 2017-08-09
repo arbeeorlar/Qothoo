@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_img"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.app.qootho.activity_update">
 
     <include
+        android:id="@+id/toolbar"
         layout="@layout/layout_test"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toolbar"/>
+        android:layout_height="wrap_content" />
 
     <View
 
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@color/line_color"/>
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color" />
 
     <LinearLayout
         android:id="@+id/linear_first_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
         android:layout_margin="20dp"
         android:orientation="vertical"
-        >
-
-
-
-
+        android:visibility="visible">
 
 
         <EditText
 
             android:id="@+id/txtMBileNo"
+            style="@style/large_code_face"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dip"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dip"
-            android:paddingLeft="10dp"
+            android:layout_marginTop="10dp"
             android:hint="Mobile Number"
-            android:inputType="number"
-            android:maxLength="14"
+            android:inputType="text"
             android:lines="1"
-            style="@style/large_code_face">
+            android:paddingLeft="10dp">
 
         </EditText>
 
 
-
         <Button
             android:id="@+id/btnSend"
+            style="@style/large_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="Update"
-            android:textStyle="bold"
-            android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:elevation="6dp"
-            style="@style/large_button"
-            android:textColor="@color/White"
             android:clickable="true"
-            />
+            android:elevation="6dp"
+            android:text="Update"
+            android:textColor="@color/White"
+            android:textStyle="bold" />
+
+        <include
+            android:id="@+id/wait_icon"
+            layout="@layout/wait_icon_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
 
     </LinearLayout>
-
 
 
 </LinearLayout>

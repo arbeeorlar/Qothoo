@@ -1,0 +1,288 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.app.qootho.BookRideFragment">
+
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" >-->
+
+    <!--<com.google.android.gms.maps.MapView-->
+    <!--android:id="@+id/mapView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_alignParentStart="true" />-->
+
+    <!--</RelativeLayout>-->
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.app.qootho.BookRideActivity" />
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_gravity="center_vertical|bottom"
+        android:background="@color/White"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:id="@+id/DriverPix"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginRight="0dp"
+                android:layout_weight="0.12"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+
+                <LinearLayout
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/round_corner"
+
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/txtDriverPicture"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:src="@drawable/amadi_car"
+
+                        />
+                </LinearLayout>
+
+                <RatingBar
+                    android:id="@+id/txtStars"
+                    android:layout_width="match_parent"
+                    android:layout_height="21dp"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:rating="3"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/txtDriversName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/txtCallTheDriver"
+                        style="@style/large_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:clickable="true"
+                        android:elevation="6dp"
+                        android:text="Call Driver"
+                        android:textColor="@color/White"
+                        android:textSize="10dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearSecond"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0.12"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/round_corner"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtTripDurtaion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="5mins"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearThree"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="0dp"
+                android:layout_weight="0.12"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:gravity="center"-->
+                <!--&gt;-->
+                <LinearLayout
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/round_corner"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/carImage"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:src="@drawable/ic_directions_car"
+
+                        />
+                </LinearLayout>
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--android:id="@+id/txtThird"-->
+                <!--android:layout_width="70dp"-->
+                <!--android:layout_height="70dp"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:background="@drawable/round_corner"-->
+                <!--android:gravity="center"-->
+                <!--android:inputType="number"-->
+                <!--android:maxLength="1"-->
+                <!--android:src="@drawable/ic_directions_car"-->
+                <!--android:textColor="#000000"-->
+                <!--/>-->
+                <TextView
+                    android:id="@+id/txtCarPlateNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/Gray"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+                <!--</RelativeLayout>-->
+
+                <TextView
+                    android:id="@+id/txtCarModel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/txtCancelRequest"
+                        style="@style/large_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:clickable="true"
+                        android:elevation="6dp"
+                        android:text="Cancel Request"
+                        android:textColor="@color/White"
+                        android:textSize="10dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>
